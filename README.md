@@ -14,6 +14,8 @@ Quà tặng theo bảng: kỳ hạn 6 và 11 tháng nhận lần lượt 1 tri�
 
 Trang có thương hiệu **Thăng Long** ở phần đầu trang và hệ thống tiêu đề được phân cấp bằng màu xanh đậm cùng điểm nhấn vàng, ưu tiên dễ đọc trên máy tính và điện thoại.
 
+Các phương án chia sổ được trình bày theo nhóm dễ đọc: các sổ có cùng số tiền và kỳ hạn sẽ được gom lại, ví dụ `3 sổ × 2 tỷ · 6 tháng + 600 triệu · 6 tháng`, nhưng số liệu tính toán gốc vẫn giữ nguyên.
+
 Khu vực **Chụp và chia sẻ kết quả** có ba lựa chọn: chụp riêng mục bảng tính thông thường, chụp riêng các phương án tối ưu hoặc chụp tổng thể cả hai phần. Nút **Chia sẻ ảnh đã tạo** mở bảng chia sẻ của thiết bị; nếu trình duyệt không hỗ trợ chia sẻ tệp nhưng cho phép sao chép ảnh, ảnh sẽ được sao chép để dán vào ứng dụng nhắn tin.
 
 Trang cũng có phần **Phương án theo yêu cầu khách hàng**. Phần này lấy đúng số tiền và kỳ hạn khách chọn làm phương án chính, tự chia sổ tối ưu trong kỳ hạn đó, rồi chỉ hiển thị các kỳ hạn dài hơn để đề xuất thêm. Mỗi phương án hiển thị số tiền chia, tiền lãi, quà tặng, tổng lợi ích, số tiền cuối kỳ và **Lãi suất thực nhận + Quà quy đổi** theo năm để so sánh các kỳ hạn.

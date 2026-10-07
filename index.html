@@ -97,7 +97,7 @@
     .strategy-card{padding:18px;border:1px solid #dce5eb;border-radius:13px;background:#fff}
     .strategy-card.recommended{border-color:#0e6d83;box-shadow:0 0 0 2px rgba(14,109,131,.1)}
     .strategy-card h3{margin:0;color:#173148;font-size:1rem;line-height:1.35}
-    .strategy-sub{margin:5px 0 15px;color:#698091;font-size:.82rem}
+    .strategy-sub{margin:5px 0 15px;color:#698091;font-size:.82rem;line-height:1.5}
     .strategy-metric{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid #e9eef2;color:#52697d;font-size:.84rem}
     .strategy-metric strong{color:#173148;text-align:right;white-space:nowrap}
     .strategy-metric.total strong{color:#0e6d83}
@@ -106,7 +106,7 @@
     .strategy-term-option{padding:13px;border:1px solid #dce5eb;border-radius:11px;background:#f9fbfc}
     .strategy-term-option.best{border-color:#0e6d83;box-shadow:0 0 0 2px rgba(14,109,131,.1);background:#fff}
     .strategy-term-option h4{margin:0;color:#173148;font-size:.95rem}
-    .strategy-term-option .strategy-sub{margin:4px 0 10px;font-size:.76rem}
+    .strategy-term-option .strategy-sub{margin:4px 0 10px;font-size:.76rem;line-height:1.5}
     .strategy-term-metric{display:flex;justify-content:space-between;gap:8px;padding:5px 0;border-bottom:1px solid #e4ebef;color:#5e7383;font-size:.78rem}
     .strategy-term-metric strong{color:#173148;text-align:right;white-space:nowrap}
     .strategy-term-metric.total strong{color:#0e6d83}
@@ -368,11 +368,32 @@
         return candidates.reduce((best, candidate) => isBetterStrategy(candidate, best) ? candidate : best, null);
       }
       function strategyPlanLabel(plan) {
-        if (plan.parts.length === 1) return `1 sổ · ${plan.parts[0].months} tháng`;
-        const sameTerm = plan.parts.every(part => part.months === plan.parts[0].months);
-        const sameAmount = plan.parts.every(part => part.amount === plan.parts[0].amount);
-        if (sameTerm && sameAmount) return `${plan.parts.length} sổ × ${money(plan.parts[0].amount)} · ${plan.parts[0].months} tháng`;
-        return plan.parts.map(part => `${money(part.amount)} · ${part.months} tháng`).join(' + ');
+        function compactAmount(value) {
+          if (value >= 1000000000) {
+            return `${(value / 1000000000).toLocaleString('vi-VN', { maximumFractionDigits: 2 })} tỷ`;
+          }
+          if (value >= 1000000) {
+            return `${(value / 1000000).toLocaleString('vi-VN', { maximumFractionDigits: 2 })} triệu`;
+          }
+          return money(value);
+        }
+        const groups = [];
+        const groupMap = new Map();
+        plan.parts.forEach(part => {
+          const key = `${part.amount}|${part.months}`;
+          const existing = groupMap.get(key);
+          if (existing) {
+            existing.count += 1;
+          } else {
+            const group = { amount: part.amount, months: part.months, count: 1 };
+            groupMap.set(key, group);
+            groups.push(group);
+          }
+        });
+        return groups.map(group => {
+          const count = group.count > 1 ? `${group.count} sổ × ` : '';
+          return `${count}${compactAmount(group.amount)} · ${group.months} tháng`;
+        }).join(' + ');
       }
       function strategyMaturityLabel(plan) {
         return plan.parts.map(part => formatDate(part.end)).filter((date, index, dates) => dates.indexOf(date) === index).join(', ');
