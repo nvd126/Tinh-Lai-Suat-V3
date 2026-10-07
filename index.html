@@ -605,7 +605,9 @@
         const { amount, requestedMonths, requestedPlan, requestedSingle, longerPlans, bestLonger } = strategyState;
         const canvas = document.createElement('canvas');
         canvas.width = 1080;
-        canvas.height = 760 + longerPlans.length * 335;
+        // Dùng canvas đệm đủ lớn rồi cắt theo nội dung thực tế để không bao giờ
+        // làm mất phần Phương án 2 hoặc các kỳ hạn dài hơn ở cuối ảnh.
+        canvas.height = 4000;
         const ctx = canvas.getContext('2d');
         if (!ctx) throw new Error('Canvas unavailable');
         ctx.fillStyle = '#f3f6f8';
@@ -614,7 +616,7 @@
         ctx.fillRect(42, 42, 996, 230);
         ctx.fillStyle = '#c9d9e3';
         ctx.font = '600 26px Averta, Georgia, serif';
-        ctx.fillText('PHƯƠNG ÁN TỐI ƯU', 82, 100);
+        ctx.fillText('PHƯƠNG ÁN THAM KHẢO', 82, 100);
         ctx.fillStyle = '#f1d500';
         ctx.font = '700 italic 32px Lora, Georgia, serif';
         ctx.textAlign = 'right';
@@ -622,7 +624,7 @@
         ctx.textAlign = 'left';
         ctx.fillStyle = '#fff';
         ctx.font = '700 35px Averta, Georgia, serif';
-        ctx.fillText('So sánh phương án gửi', 82, 160);
+        ctx.fillText('Đầy đủ các phương án để khách lựa chọn', 82, 160);
         ctx.font = '700 42px Averta, Georgia, serif';
         ctx.fillText(`${money(amount)} · ${requestedMonths} tháng`, 82, 220);
         ctx.fillStyle = '#fff';
@@ -676,8 +678,14 @@
         }
         ctx.fillStyle = '#5e7383';
         ctx.font = '400 17px Averta, Georgia, serif';
-        wrapCanvasText(ctx, 'Kết quả giả định chương trình tính quà riêng theo từng sổ tiết kiệm. Lãi mỗi sổ = tiền gửi × 8,8% × số ngày / 365.', 62, y + 34, 930, 25, 3);
-        return canvas;
+        const contentBottom = Math.min(canvas.height, y + 100);
+        const result = document.createElement('canvas');
+        result.width = canvas.width;
+        result.height = contentBottom;
+        const resultContext = result.getContext('2d');
+        if (!resultContext) throw new Error('Canvas unavailable');
+        resultContext.drawImage(canvas, 0, 0);
+        return result;
       }
       function drawFullPage() {
         const statement = drawStatement();
