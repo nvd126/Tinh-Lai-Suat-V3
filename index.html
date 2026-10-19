@@ -17,13 +17,13 @@
     :root{font-family:"Averta",Georgia,serif;color:#173148;background:#f3f6f8;font-synthesis:none;line-height:1.45}
     *{box-sizing:border-box}
     body{margin:0;min-height:100vh}
-    main{max-width:1060px;margin:auto;padding:34px 20px 64px}
+    main{max-width:1320px;margin:auto;padding:34px 24px 64px}
     .eyebrow{margin:0 0 7px;color:#587186;font-weight:700;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase}
     h1{font-size:clamp(1.8rem,4vw,2.65rem);line-height:1.14;letter-spacing:-.035em;margin:0 0 8px;color:#112e46}
     .intro{margin:0 0 28px;color:#52697d;line-height:1.5}
     .campaign-note{margin:-12px 0 24px;padding:15px 18px;border:1px solid #f1d28a;border-radius:12px;background:#fff8e5;color:#526275;font-size:.9rem;line-height:1.55}
     .campaign-note strong{color:#173148}
-    .layout{display:grid;grid-template-columns:minmax(295px,.8fr) minmax(0,1.2fr);gap:18px;align-items:start}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
     .panel{background:#fff;border:1px solid #dce5eb;border-radius:20px;box-shadow:0 14px 40px rgba(19,50,71,.055)}
     .form-panel{padding:25px}
     .result-panel{overflow:hidden}
@@ -33,6 +33,8 @@
     .brand-mark{position:relative;display:inline-block;flex:0 0 auto;color:#c7a400;font:700 clamp(1.65rem,4.4vw,3rem)/1 "Lora",Georgia,serif;font-style:italic;letter-spacing:-.055em;transform:rotate(-4deg);white-space:nowrap;padding:0 8px 8px 0}
     .brand-mark::after{content:"";position:absolute;left:6%;right:-3%;bottom:0;height:5px;border-radius:50%;background:#f1d500;transform:rotate(-2deg) skewX(-24deg)}
     .form-panel h2,.strategy-panel h2,.capture-panel h2{padding-left:12px;border-left:4px solid #f1c75b}
+    .form-panel{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:18px;align-items:start}
+    .form-panel h2,.form-panel .fixed{grid-column:1/-1}
     label{display:block;font-weight:700;font-size:.92rem;margin-bottom:9px}
     .field{margin-bottom:22px}
     .money-wrap{position:relative}
@@ -58,6 +60,21 @@
     .meta-item strong{display:block;color:#173148;font-size:.82rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .section-title{display:flex;align-items:center;gap:8px;color:#31566c;font-size:.8rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em;margin:22px 0 10px}
     .section-title::before{content:"";width:18px;height:4px;border-radius:99px;background:#f1c75b;flex:0 0 auto}
+    .ledger-intro{margin:-3px 0 12px;color:#64798a;font-size:.82rem;line-height:1.5}
+    .ledger-wrap{overflow:hidden;border:1px solid #dce5eb;border-radius:11px;background:#fff}
+    .ledger-table{width:100%;table-layout:fixed;border-collapse:collapse;font-size:.78rem;font-variant-numeric:tabular-nums}
+    .ledger-table th:nth-child(1){width:13%}.ledger-table th:nth-child(2){width:17%}.ledger-table th:nth-child(3){width:9%}.ledger-table th:nth-child(4){width:11%}.ledger-table th:nth-child(5){width:30%}.ledger-table th:nth-child(6){width:20%}
+    .ledger-table th{padding:11px 10px;background:#eaf2f5;color:#31566c;text-align:left;font-size:.73rem;white-space:normal;overflow-wrap:anywhere}
+    .ledger-table td{padding:11px 12px;border-top:1px solid #e5ebef;vertical-align:middle;color:#40586b}
+    .ledger-table tbody tr:nth-child(even){background:#f9fbfc}
+    .ledger-table td.money,.ledger-table th.money{text-align:right;white-space:normal;overflow-wrap:anywhere}
+    .ledger-table td.rate,.ledger-table th.rate{text-align:center;white-space:normal}
+    .ledger-table .ledger-book{display:block;color:#173148;font-weight:800}
+    .ledger-table .ledger-source{display:block;margin-top:3px;color:#718596;font-size:.7rem}
+    .ledger-table .ledger-formula{font-family:ui-monospace,Consolas,monospace;font-size:.72rem;white-space:normal;overflow-wrap:anywhere;color:#52697d}
+    .ledger-table td.interest{background:#fff9d6;color:#173148;font-weight:800}
+    .ledger-table tfoot td{background:#f3f7f8;color:#173148;font-weight:800;border-top:2px solid #d7e1e7}
+    .formula-note{margin:10px 0 0;padding:11px 13px;border-left:3px solid #f1c75b;border-radius:0 8px 8px 0;background:#fff9e7;color:#526579;font-size:.8rem;line-height:1.55}
     .books{display:grid;gap:9px}
     .book{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:16px;padding:13px 14px;border:1px solid #dfe8ed;border-radius:11px;background:#fff}
     .book-name{display:block;color:#173148;font-size:.94rem;font-weight:800;margin-bottom:3px}
@@ -115,17 +132,17 @@
     .strategy-note strong{color:#435e72}
     [hidden]{display:none!important}
     @media(max-width:900px){.strategy-grid{grid-template-columns:1fr}}
-    @media(max-width:760px){main{padding:24px 14px 44px}.layout{grid-template-columns:1fr}.title-row{align-items:flex-start;gap:12px}.brand-mark{font-size:clamp(1.35rem,7vw,2.15rem);padding-right:3px}.intro{margin-bottom:20px}.form-panel{padding:20px}.result-head{padding:24px 22px}.result-body{padding:18px 22px 22px}.capture-panel{padding:20px 22px 22px}.capture-actions{grid-template-columns:1fr}.strategy-panel{padding:20px 22px 22px}.panel{border-radius:17px}}
-    @media(max-width:460px){.meta-grid{grid-template-columns:1fr 1fr}.meta-item:first-child{grid-column:1/-1}.book{gap:10px;padding:12px}.book-meta{font-size:.72rem}.book-interest strong{font-size:.94rem}.strategy-term-options{grid-template-columns:1fr}}
-    @media(max-width:350px){.row{font-size:.82rem}.row strong{font-size:.9rem}.result-body{padding-left:16px;padding-right:16px}.book{grid-template-columns:1fr}.book-interest{text-align:left}}
+    @media(max-width:760px){main{padding:24px 14px 44px}.layout{grid-template-columns:1fr}.form-panel{grid-template-columns:1fr}.form-panel h2,.form-panel .fixed{grid-column:1}.title-row{flex-direction:column;align-items:flex-start;gap:10px}.brand-mark{font-size:clamp(1.35rem,7vw,2.15rem);padding-right:3px}.intro{margin-bottom:20px}.form-panel{padding:20px}.result-head{padding:24px 22px}.result-body{padding:18px 22px 22px}.capture-panel{padding:20px 22px 22px}.capture-actions{grid-template-columns:1fr}.strategy-panel{padding:20px 22px 22px}.panel{border-radius:17px}.ledger-table thead{display:none}.ledger-table,.ledger-table tbody,.ledger-table tfoot{display:block;width:100%}.ledger-table tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;padding:8px 12px;border-top:1px solid #e5ebef}.ledger-table tbody tr:nth-child(even){background:#f9fbfc}.ledger-table tbody td{display:flex;justify-content:space-between;gap:10px;padding:7px 0;border:0;text-align:right;overflow-wrap:anywhere}.ledger-table tbody td::before{content:attr(data-label);flex:0 0 auto;color:#718596;font-size:.72rem;font-weight:600;text-align:left}.ledger-table tbody td:first-child,.ledger-table tbody td:nth-child(5){grid-column:1/-1}.ledger-table tbody td:first-child{display:block;text-align:left}.ledger-table tbody td:first-child::before{display:none}.ledger-table tbody td:nth-child(5){display:block;text-align:left}.ledger-table tbody td:nth-child(5)::before{display:block;margin-bottom:4px}.ledger-table tbody td.money{white-space:normal}.ledger-table tfoot tr{display:grid;grid-template-columns:1fr auto;align-items:center;padding:10px 12px}.ledger-table tfoot td{border:0;padding:0}.ledger-table tfoot td:first-child{grid-column:1}.ledger-table tfoot td:last-child{text-align:right}}
+    @media(max-width:460px){.meta-grid{grid-template-columns:1fr 1fr}.meta-item:first-child{grid-column:1/-1}.strategy-term-options{grid-template-columns:1fr}}
+    @media(max-width:350px){.row{font-size:.82rem}.row strong{font-size:.9rem}.result-body{padding-left:16px;padding-right:16px}}
   </style>
 </head>
 <body>
   <main>
     <p class="eyebrow">Bảng tính lãi tiền gửi</p>
-    <div class="title-row"><h1>Tính lãi tiền gửi</h1><span class="brand-mark">Thăng Long</span></div>
+    <div class="title-row"><h1>Tính lãi tiền gửi</h1><span class="brand-mark">Chi nhánh Thăng Long</span></div>
     <p class="intro">Nhập số tiền và chọn kỳ hạn. Ngày gửi tự cập nhật theo giờ Hà Nội.</p>
-    <aside class="campaign-note" aria-label="Thời gian và sản phẩm áp dụng quà tặng"><strong>Thời gian áp dụng:</strong> Từ 01/10/2026 đến hết 31/10/2026. Chương trình có thể kết thúc sớm.<br><strong>Sản phẩm áp dụng:</strong> Tiền gửi tiết kiệm, tiền gửi có kỳ hạn tại quầy.</aside>
+    <aside class="campaign-note" aria-label="Thông tin chương trình tham khảo"><strong>Thời gian chương trình tham khảo:</strong> Từ 01/10/2026 đến hết 31/10/2026; có thể kết thúc sớm và áp dụng theo thể lệ chính thức của đơn vị cung cấp.<br><strong>Sản phẩm tham khảo:</strong> Tiền gửi tiết kiệm, tiền gửi có kỳ hạn tại quầy. Vui lòng xác nhận trực tiếp với đơn vị cung cấp trước khi đăng ký.</aside>
     <div class="layout">
       <section class="panel form-panel" aria-labelledby="input-title">
         <h2 id="input-title">Thông tin khoản gửi</h2>
@@ -139,32 +156,40 @@
           <label for="term">Kỳ hạn gửi</label>
           <select id="term"><option value="6">6 tháng</option><option value="11">11 tháng</option><option value="12" selected>12 tháng</option><option value="13">13 tháng</option></select>
         </div>
+        <div class="field">
+          <label for="extra-amount">Số tiền chi thêm</label>
+          <div class="money-wrap"><input id="extra-amount" type="text" inputmode="numeric" autocomplete="off" value="0" aria-describedby="extra-amount-hint"><span class="unit">VNĐ</span></div>
+          <p id="extra-amount-hint" class="hint">Cộng cùng tiền thưởng vào vốn tính lãi của Sổ 2.</p>
+        </div>
         <div class="fixed">
-          <div class="fixed-row"><span>Lãi suất áp dụng</span><strong>8,80%/năm</strong></div>
+          <div class="fixed-row"><span>Lãi suất mô phỏng</span><strong>8,70%/năm</strong></div>
           <div class="fixed-row"><span>Ngày gửi · Hà Nội (UTC+7)</span><strong id="input-start-date">—</strong></div>
         </div>
       </section>
       <section class="panel result-panel" aria-labelledby="result-title">
-        <div class="result-head"><p id="result-title" class="label">Tổng lãi thực nhận</p><div class="total"><span id="total">—</span> <small>VNĐ</small></div><p class="sub">Tổng tiền lãi của các sổ đủ điều kiện</p></div>
+        <div class="result-head"><p id="result-title" class="label">Tổng lãi ước tính</p><div class="total"><span id="total">—</span> <small>VNĐ</small></div><p class="sub">Ước tính tổng lãi các sổ theo mô hình tính</p></div>
         <div class="result-body" id="result-body">
           <div class="meta-grid" aria-label="Thông tin kỳ gửi">
             <div class="meta-item"><span>Kỳ hạn</span><strong id="term-display">—</strong></div>
             <div class="meta-item"><span>Ngày gửi → tất toán</span><strong id="date-range">—</strong></div>
-            <div class="meta-item"><span>Số ngày · lãi suất</span><strong><span id="days">—</span> · 8,80%</strong></div>
+            <div class="meta-item"><span>Số ngày · lãi suất</span><strong><span id="days">—</span> · 8,70%</strong></div>
           </div>
-          <p class="section-title">Dòng tiền lãi</p>
-          <div class="books">
-            <div class="book" id="book-one"><div><span class="book-name">Sổ 1 · Đầu kỳ</span><span class="book-meta">Tiền gửi: <b id="principal">—</b></span></div><div class="book-interest"><span>Tiền lãi</span><strong id="interest-one">—</strong></div></div>
-            <div class="book" id="book-two"><div><span class="book-name">Sổ 2 · Đầu kỳ</span><span class="book-meta">Mở từ lãi Sổ 1: <b id="book-two-principal">—</b></span></div><div class="book-interest"><span>Tiền lãi</span><strong id="interest-two">—</strong></div></div>
-            <div class="book" id="book-three"><div><span class="book-name">Sổ 3 · Cuối kỳ</span><span class="book-meta">Mở từ lãi Sổ 2: <b id="book-three-principal">—</b></span></div><div class="book-interest"><span>Tiền lãi</span><strong id="interest-three">—</strong></div></div>
-                      <div class="book" id="book-four" hidden><div><span class="book-name">Sổ 4 · Cuối kỳ</span><span class="book-meta">Mở từ lãi Sổ 3: <b id="book-four-principal">—</b></span></div><div class="book-interest"><span>Tiền lãi</span><strong id="interest-four">—</strong></div></div>
+          <p class="section-title">Chi tiết từng sổ và công thức</p>
+          <p class="ledger-intro">Bảng dưới đây tách rõ vốn dùng để tính, kỳ hạn, lãi suất và phép tính ra tiền lãi; bố cục tự thích ứng với màn hình nhỏ.</p>
+          <div class="ledger-wrap" role="region" aria-label="Bảng chi tiết cách tính lãi từng sổ" tabindex="0">
+            <table class="ledger-table">
+              <thead><tr><th>Sổ / nguồn vốn</th><th class="money">Vốn tính lãi</th><th class="money">Số ngày</th><th class="rate">Lãi suất năm</th><th>Công thức tính</th><th class="money">Tiền lãi ước tính</th></tr></thead>
+              <tbody id="ledger-body" aria-live="polite"></tbody>
+              <tfoot><tr><td colspan="5">Tổng lãi ước tính</td><td id="ledger-total" class="money interest">—</td></tr></tfoot>
+            </table>
           </div>
+          <p class="formula-note"><strong>Công thức:</strong> Tiền lãi = vốn tính lãi × 8,70% × số ngày gửi / 365; mỗi sổ được làm tròn đến đồng. Khi đủ điều kiện mở Sổ 2, vốn Sổ 2 gồm lãi Sổ 1 + số tiền chi thêm + tiền thưởng. Từ Sổ 3, vốn là lãi của sổ liền trước.</p>
           <p id="gate-note" class="gate-note"></p>
           <p class="section-title">Kết quả chính</p>
-          <div class="row emphasis"><span>Lãi suất thực nhận</span><strong id="effective">—</strong></div>
-          <div class="row gift"><span>Quà tặng dự kiến</span><strong id="cash-gift">—</strong></div>
-          <div class="row emphasis"><span>Tổng tiền lãi + quà</span><strong id="with-gift">—</strong></div>
-          <div class="row final"><span>Lãi suất thực nhận + Quà quy đổi</span><strong id="effective-with-gift">—</strong></div>
+          <div class="row emphasis"><span>Lãi suất quy đổi ước tính</span><strong id="effective">—</strong></div>
+          <div class="row gift"><span>Quà tặng ước tính</span><strong id="cash-gift">—</strong></div>
+          <div class="row emphasis"><span>Tổng lãi + quà ước tính</span><strong id="with-gift">—</strong></div>
+          <div class="row final"><span>Lãi + quà quy đổi theo năm (ước tính)</span><strong id="effective-with-gift">—</strong></div>
         </div>
       </section>
     </div>
@@ -173,17 +198,17 @@
       <p id="strategy-lead" class="strategy-lead"></p>
       <div class="strategy-grid">
         <article id="strategy-one-card" class="strategy-card">
-          <h3 id="strategy-one-title">1. Tối ưu đúng kỳ hạn khách chọn</h3>
+        <h3 id="strategy-one-title">1. Phân bổ theo kỳ hạn khách chọn</h3>
           <p id="strategy-one-sub" class="strategy-sub"></p>
-          <div class="strategy-metric"><span>Tiền lãi</span><strong id="strategy-one-interest"></strong></div>
-          <div class="strategy-metric"><span>Quà tặng</span><strong id="strategy-one-gift"></strong></div>
+          <div class="strategy-metric"><span>Lãi ước tính</span><strong id="strategy-one-interest"></strong></div>
+          <div class="strategy-metric"><span>Quà ước tính</span><strong id="strategy-one-gift"></strong></div>
           <div class="strategy-metric total"><span>Lãi + quà</span><strong id="strategy-one-benefit"></strong></div>
-          <div class="strategy-metric total"><span>Lãi suất thực nhận + Quà quy đổi</span><strong id="strategy-one-percent"></strong></div>
+          <div class="strategy-metric total"><span>Lãi + quà quy đổi theo năm</span><strong id="strategy-one-percent"></strong></div>
           <div class="strategy-metric total"><span>Cuối kỳ</span><strong id="strategy-one-final"></strong></div>
           <p id="strategy-one-note"></p>
         </article>
         <article id="strategy-two-card" class="strategy-card">
-          <h3>2. Đề xuất kỳ hạn dài hơn</h3>
+        <h3>2. Tham khảo kỳ hạn dài hơn</h3>
           <p id="strategy-two-sub" class="strategy-sub"></p>
           <div id="strategy-term-options" class="strategy-term-options"></div>
           <p id="strategy-two-note"></p>
@@ -196,7 +221,7 @@
       <p class="capture-lead">Chọn đúng phần anh muốn gửi cho khách hàng. Ảnh sẽ được tạo theo dữ liệu đang hiển thị.</p>
       <div class="capture-actions">
         <button id="capture-button" class="capture-button" type="button" aria-describedby="capture-status">Chụp mục bảng tính</button>
-        <button id="capture-strategy-button" class="capture-button secondary" type="button" aria-describedby="capture-status">Chụp phương án tối ưu</button>
+        <button id="capture-strategy-button" class="capture-button secondary" type="button" aria-describedby="capture-status">Chụp phương án tham khảo</button>
         <button id="capture-full-button" class="capture-button tertiary" type="button" aria-describedby="capture-status">Chụp toàn bộ trang</button>
       </div>
       <p id="capture-status" class="capture-status" aria-live="polite"></p>
@@ -205,7 +230,7 @@
         <img id="capture-preview" class="capture-preview" alt="Ảnh kết quả vừa tạo">
       </div>
     </section>
-    <p class="note"><strong>Điều kiện tính tiếp:</strong> Chỉ mở sổ tiếp theo khi tiền lãi sổ liền trước đạt từ 10.000.000 đồng. Lãi mỗi sổ = số tiền gửi × 8,8% × số ngày / 365. Quà tặng áp dụng theo chương trình từ 01/10/2026 đến hết 31/10/2026, có thể kết thúc sớm.</p>
+    <p class="note"><strong>Cách tính:</strong> Sổ tiếp theo được tính khi lãi của sổ liền trước đạt từ 1.000.000 đồng; nếu thấp hơn mức này thì dừng. Tiền lãi từng sổ được làm tròn đến đồng. Lãi ước tính = số tiền gửi × 8,7% × số ngày / 365. Đây là công cụ tham khảo dựa trên thông số đang nhập, không phải cam kết lãi suất hay xác nhận ưu đãi của tổ chức nhận tiền gửi. Vui lòng kiểm tra lãi suất, thể lệ, điều kiện áp dụng và khả năng nhận quà trực tiếp với đơn vị cung cấp trước khi quyết định.</p>
   </main>
   <script>
     (() => {
@@ -213,6 +238,7 @@
       const byId = id => document.getElementById(id);
       const amountInput = byId('amount');
       const termInput = byId('term');
+      const extraAmountInput = byId('extra-amount');
       const number = value => new Intl.NumberFormat('vi-VN').format(value);
       const money = value => `${number(value)} đ`;
       const parseAmount = value => Number(value.replace(/\D/g, ''));
@@ -270,18 +296,20 @@
       const strategyTerms = [6, 11, 12, 13];
       const strategyUnit = 100000000;
       const strategyMaxUnits = 300;
+      const minimumInterest = 1000000;
+      let currentCalculation = null;
       function calculateDeposit(principal, months, startDate) {
         const end = maturityDate(startDate, months);
         const days = Math.round((utcDay(end) - utcDay(startDate)) / 86400000);
-        const rateForTerm = 0.088 * days / 365;
+        const rateForTerm = 0.087 * days / 365;
         const interests = [];
         let current = principal;
         let totalInterest = 0;
-        for (let index = 0; index < 4; index += 1) {
+        for (let index = 0; index < 20; index += 1) {
           const interest = Math.round(current * rateForTerm);
           interests.push(interest);
           totalInterest += interest;
-          if (interest < 10000000) break;
+          if (interest < minimumInterest) break;
           current = interest;
         }
         const gift = cashGift(principal, months, startDate);
@@ -418,37 +446,39 @@
         const bestLonger = longerPlans.reduce((best, candidate) => isBetterStrategy(candidate, best) ? candidate : best, null);
         strategyState = { amount, startDate, requestedMonths, requestedPlan, requestedSingle, longerPlans, bestLonger };
         byId('strategy-panel').hidden = false;
-        byId('strategy-lead').textContent = `Khách chọn ${money(amount)} · kỳ hạn ${requestedMonths} tháng · lãi suất 8,8%/năm · ngày gửi ${formatDate(startDate)}.`;
+        byId('strategy-lead').textContent = `Khách chọn ${money(amount)} · kỳ hạn ${requestedMonths} tháng · lãi suất 8,7%/năm · ngày gửi ${formatDate(startDate)}.`;
         renderStrategyCard('strategy-one', requestedPlan, `Đúng kỳ hạn khách chọn; ngày đáo hạn dự kiến ${strategyMaturityLabel(requestedPlan)}.`);
         byId('strategy-two-sub').textContent = longerPlans.length ? 'Chỉ hiển thị các kỳ hạn dài hơn để khách cân nhắc thêm.' : 'Khách đã chọn kỳ hạn dài nhất hiện có.';
         byId('strategy-term-options').innerHTML = longerPlans.length ? longerPlans.map(plan => {
           const termBest = plan === bestLonger;
-          return `<div class="strategy-term-option${termBest ? ' best' : ''}"><h4>${plan.parts[0].months} tháng${termBest ? ' · nên cân nhắc' : ''}</h4><p class="strategy-sub">${strategyPlanLabel(plan)}</p><div class="strategy-term-metric"><span>Tiền lãi</span><strong>${money(plan.interest)}</strong></div><div class="strategy-term-metric"><span>Quà tặng</span><strong>${money(plan.gift)}</strong></div><div class="strategy-term-metric total"><span>Lãi + quà</span><strong>${money(plan.benefit)}</strong></div><div class="strategy-term-metric total"><span>Lãi suất thực nhận + Quà quy đổi</span><strong>${strategyAnnualizedPercent(plan)}</strong></div><p class="strategy-term-note">Cuối kỳ: ${money(plan.amount + plan.benefit)}.</p></div>`;
+          return `<div class="strategy-term-option${termBest ? ' best' : ''}"><h4>${plan.parts[0].months} tháng${termBest ? ' · nên cân nhắc' : ''}</h4><p class="strategy-sub">${strategyPlanLabel(plan)}</p><div class="strategy-term-metric"><span>Lãi ước tính</span><strong>${money(plan.interest)}</strong></div><div class="strategy-term-metric"><span>Quà ước tính</span><strong>${money(plan.gift)}</strong></div><div class="strategy-term-metric total"><span>Lãi + quà ước tính</span><strong>${money(plan.benefit)}</strong></div><div class="strategy-term-metric total"><span>Lãi + quà quy đổi theo năm</span><strong>${strategyAnnualizedPercent(plan)}</strong></div><p class="strategy-term-note">Cuối kỳ ước tính: ${money(plan.amount + plan.benefit)}.</p></div>`;
         }).join('') : '<p class="strategy-term-note">Không còn kỳ hạn dài hơn trong danh sách hiện tại.</p>';
         const splitDifference = requestedPlan.benefit - requestedSingle.benefit;
-        byId('strategy-one-note').textContent = splitDifference > 0 ? `Chia sổ giúp tăng khoảng ${money(splitDifference)} so với gửi một sổ cùng kỳ hạn.` : 'Với số tiền này, chia sổ không tạo thêm lợi ích đáng kể so với gửi một sổ.';
+        byId('strategy-one-note').textContent = splitDifference > 0 ? `Theo mô hình ước tính, cách chia này cao hơn khoảng ${money(splitDifference)} so với gửi một sổ cùng kỳ hạn.` : 'Theo mô hình ước tính, chia sổ không tạo thêm lợi ích đáng kể so với gửi một sổ.';
         byId('strategy-two-note').textContent = longerPlans.length ? `Kỳ hạn dài hơn tốt nhất hiện tại là ${bestLonger.parts[0].months} tháng, cao hơn phương án khách chọn khoảng ${money(bestLonger.benefit - requestedPlan.benefit)}.` : 'Có thể giữ nguyên kỳ hạn khách chọn vì đây là kỳ hạn dài nhất hiện có.';
         const oneCard = byId('strategy-one-card');
         const twoCard = byId('strategy-two-card');
         oneCard.classList.toggle('recommended', !longerPlans.length);
         twoCard.classList.toggle('recommended', Boolean(longerPlans.length));
-        byId('strategy-note').innerHTML = `<strong>Cách chọn:</strong> Phương án 1 giữ đúng số tiền và kỳ hạn khách yêu cầu. Nếu khách chấp nhận gửi dài hơn, xem kỳ hạn được đánh dấu “nên cân nhắc”. Lãi suất thực nhận + Quà quy đổi được quy đổi theo năm để so sánh các kỳ hạn. Kết quả giả định chương trình tính quà riêng cho từng sổ tiết kiệm.`;
+        byId('strategy-note').innerHTML = `<strong>Cách đọc:</strong> Phương án 1 giữ đúng kỳ hạn khách chọn; các mục bên cạnh cho thấy kết quả mô phỏng nếu cân nhắc kỳ hạn dài hơn. Mức lãi + quà quy đổi theo năm giúp tiện so sánh. Kết quả giả định quà tính riêng cho từng sổ và chỉ mang tính tham khảo; tổ chức cung cấp xác nhận lãi suất, quà tặng, điều kiện và kết quả thực tế.`;
       }
       function calculate() {
         const amount = parseAmount(amountInput.value);
+        const extraAmount = parseAmount(extraAmountInput.value);
+        const availableAmount = amount + extraAmount;
         const months = Number(termInput.value);
         const start = hanoiToday();
         const end = maturityDate(start, months);
         const days = Math.round((utcDay(end) - utcDay(start)) / 86400000);
         byId('input-start-date').textContent = formatDate(start);
         const error = byId('amount-error');
-        if (!Number.isSafeInteger(amount) || amount <= 0) {
+        if (!Number.isSafeInteger(amount) || amount <= 0 || !Number.isSafeInteger(extraAmount) || extraAmount < 0 || !Number.isSafeInteger(availableAmount)) {
           clearCapture();
           captureButton.disabled = true;
           captureStrategyButton.disabled = true;
           captureFullButton.disabled = true;
           strategyState = null;
-          error.textContent = amountInput.value.trim() ? 'Vui lòng nhập số tiền hợp lệ.' : 'Vui lòng nhập số tiền gửi.';
+          error.textContent = amountInput.value.trim() ? 'Vui lòng kiểm tra số tiền gửi và số tiền chi thêm.' : 'Vui lòng nhập số tiền gửi.';
           amountInput.setAttribute('aria-invalid', 'true');
           byId('result-body').hidden = true;
           byId('strategy-panel').hidden = true;
@@ -460,55 +490,86 @@
         captureButton.disabled = false;
         captureStrategyButton.disabled = false;
         captureFullButton.disabled = false;
-        if (captureSignature && captureSignature !== `${amount}|${months}|${formatDate(start)}`) clearCapture();
+        if (captureSignature && captureSignature !== `${amount}|${extraAmount}|${months}|${formatDate(start)}`) clearCapture();
         byId('result-body').hidden = false;
-        const rateForTerm = 0.088 * days / 365;
-        const minimumInterest = 10000000;
-        const first = Math.round(amount * rateForTerm);
-        const hasSecond = first >= minimumInterest;
-        const second = hasSecond ? Math.round(first * rateForTerm) : 0;
-        const hasThird = hasSecond && second >= minimumInterest;
-        const third = hasThird ? Math.round(second * rateForTerm) : 0;
-        const hasFourth = hasThird && third >= minimumInterest;
-        const fourth = hasFourth ? Math.round(third * rateForTerm) : 0;
-        const total = first + second + third + fourth;
-        const effective = total / amount * 365 / days * 100;
-        const effectiveText = `${effective.toLocaleString('vi-VN', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}%`;
+        const rateForTerm = 0.087 * days / 365;
         const gift = cashGift(amount, months, start);
+        const interests = [];
+        let current = amount;
+        for (let index = 0; index < 20; index += 1) {
+          const interest = Math.round(current * rateForTerm);
+          interests.push(interest);
+          if (interest < minimumInterest) break;
+          current = interest + (index === 0 ? extraAmount + gift : 0);
+        }
+        const total = interests.reduce((sum, interest) => sum + interest, 0);
+        const effective = total / availableAmount * 365 / days * 100;
+        const effectiveText = `${effective.toLocaleString('vi-VN', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}%`;
         const totalWithGift = total + gift;
-        const effectiveWithGift = totalWithGift / amount * 365 / days * 100;
+        const effectiveWithGift = totalWithGift / availableAmount * 365 / days * 100;
+        currentCalculation = { amount, extraAmount, availableAmount, months, start, end, days, interests, total, gift, totalWithGift };
         byId('total').textContent = number(total);
         byId('term-display').textContent = termInput.selectedOptions[0].textContent;
         byId('date-range').textContent = `${formatDate(start)} → ${formatDate(end)}`;
-        byId('principal').textContent = money(amount);
         byId('days').textContent = `${number(days)} ngày`;
-        byId('interest-one').textContent = money(first);
-        byId('book-two').hidden = !hasSecond;
-        byId('book-two-principal').textContent = money(first);
-        byId('interest-two').textContent = money(second);
-        byId('book-three').hidden = !hasThird;
-        byId('book-three-principal').textContent = money(second);
-        byId('interest-three').textContent = money(third);
-        byId('book-four').hidden = !hasFourth;
-        byId('book-four-principal').textContent = money(third);
-        byId('interest-four').textContent = money(fourth);
-        byId('gate-note').textContent = !hasSecond
-          ? 'Dừng sau Sổ 1: tiền lãi Sổ 1 chưa đủ 10.000.000 đồng để mở Sổ 2.'
-          : !hasThird
-            ? 'Dừng sau Sổ 2: tiền lãi Sổ 2 chưa đủ 10.000.000 đồng để mở Sổ 3.'
-            : !hasFourth
-              ? 'Dừng sau Sổ 3: tiền lãi Sổ 3 chưa đủ 10.000.000 đồng để mở Sổ 4.'
-              : 'Đủ điều kiện tính đến Sổ 4.';
+        byId('ledger-body').replaceChildren(...interests.map((interest, index) => {
+          const principal = index === 0 ? amount : interests[index - 1] + (index === 1 ? extraAmount + gift : 0);
+          const row = document.createElement('tr');
+          const bookCell = document.createElement('td');
+          bookCell.dataset.label = 'Sổ / nguồn vốn';
+          const bookName = document.createElement('span');
+          bookName.className = 'ledger-book';
+          bookName.textContent = `Sổ ${index + 1}`;
+          const source = document.createElement('span');
+          source.className = 'ledger-source';
+          source.textContent = index === 0 ? 'Vốn ban đầu' : index === 1
+            ? `Tái gửi lãi Sổ 1${extraAmount ? ' + chi thêm' : ''}${gift ? ' + thưởng' : ''}`
+            : `Tái gửi lãi Sổ ${index}`;
+          bookCell.append(bookName, source);
+          const principalCell = document.createElement('td');
+          principalCell.dataset.label = 'Vốn tính lãi';
+          principalCell.className = 'money';
+          principalCell.textContent = money(principal);
+          const daysCell = document.createElement('td');
+          daysCell.dataset.label = 'Số ngày';
+          daysCell.className = 'money';
+          daysCell.textContent = number(days);
+          const rateCell = document.createElement('td');
+          rateCell.dataset.label = 'Lãi suất năm';
+          rateCell.className = 'rate';
+          rateCell.textContent = '8,70%';
+          const formulaCell = document.createElement('td');
+          formulaCell.dataset.label = 'Công thức tính';
+          const formula = document.createElement('code');
+          formula.className = 'ledger-formula';
+          const formulaPrincipal = index === 1
+            ? `(${[interests[0], ...(extraAmount ? [extraAmount] : []), ...(gift ? [gift] : [])].map(number).join(' + ')})`
+            : number(principal);
+          formula.textContent = `${formulaPrincipal} × 8,70% × ${number(days)} / 365`;
+          formulaCell.append(formula);
+          const interestCell = document.createElement('td');
+          interestCell.dataset.label = 'Tiền lãi ước tính';
+          interestCell.className = 'money interest';
+          interestCell.textContent = money(interest);
+          row.append(bookCell, principalCell, daysCell, rateCell, formulaCell, interestCell);
+          return row;
+        }));
+        byId('ledger-total').textContent = money(total);
+        const lastIndex = interests.length - 1;
+        const lastInterest = interests[lastIndex];
+        byId('gate-note').textContent = lastInterest < minimumInterest
+          ? `Dừng sau Sổ ${interests.length}: lãi sổ này dưới 1.000.000 đồng nên chưa đủ mở sổ tiếp theo.`
+          : `Lãi sổ đạt từ 1.000.000 đồng; có thể mở Sổ ${interests.length + 1} theo điều kiện áp dụng.`;
         byId('effective').textContent = effectiveText;
         byId('cash-gift').textContent = money(gift);
         byId('with-gift').textContent = money(totalWithGift);
         byId('effective-with-gift').textContent = `${effectiveWithGift.toLocaleString('vi-VN', { minimumFractionDigits: 4, maximumFractionDigits: 4 })}%`;
-        renderStrategies(amount, start, months);
+        renderStrategies(availableAmount, start, months);
       }
       function drawStatement() {
         const canvas = document.createElement('canvas');
         canvas.width = 1080;
-        canvas.height = 1800;
+        canvas.height = 1800 + Math.max(0, (currentCalculation?.interests.length || 1) - 4) * 140;
         const ctx = canvas.getContext('2d');
         if (!ctx) throw new Error('Canvas unavailable');
         ctx.fillStyle = '#f3f6f8';
@@ -521,15 +582,15 @@
         ctx.fillStyle = '#f1d500';
         ctx.font = '700 italic 32px Lora, Georgia, serif';
         ctx.textAlign = 'right';
-        ctx.fillText('Thăng Long', 998, 100);
+        ctx.fillText('Chi nhánh Thăng Long', 998, 100);
         ctx.textAlign = 'left';
         ctx.fillStyle = '#fff';
         ctx.font = '700 35px Averta, Georgia, serif';
-        ctx.fillText('Tổng lãi thực nhận', 82, 160);
+        ctx.fillText('Tổng lãi ước tính', 82, 160);
         ctx.font = '700 54px Averta, Georgia, serif';
         ctx.fillText(`${byId('total').textContent} VNĐ`, 82, 233);
         ctx.fillStyle = '#fff';
-        ctx.fillRect(42, 292, 996, 1440);
+        ctx.fillRect(42, 292, 996, canvas.height - 360);
         let y = 310;
         function section(title) {
           ctx.fillStyle = '#eaf2f5';
@@ -567,33 +628,30 @@
         }
         section('THÔNG TIN KHOẢN GỬI');
         row('Kỳ hạn gửi', termInput.selectedOptions[0].textContent);
-        row('Tiền gửi', byId('principal').textContent);
+        row('Tiền gửi', money(currentCalculation.amount));
+        row('Số tiền chi thêm', money(currentCalculation.extraAmount));
+        row('Tiền thưởng (đưa vào vốn Sổ 2)', money(currentCalculation.gift));
         row('Ngày gửi → tất toán', byId('date-range').textContent);
-        row('Số ngày · lãi suất', `${byId('days').textContent} · 8,80%`);
-        section('DÒNG TIỀN LÃI');
-        row('Sổ 1 · Tiền gửi', byId('principal').textContent);
-        row('Sổ 1 · Lãi đầu kỳ', byId('interest-one').textContent, 'strong');
-        if (!byId('book-two').hidden) {
-          row('Sổ 2 · Lãi đầu kỳ', byId('interest-two').textContent, 'strong');
-        }
-        if (!byId('book-three').hidden) {
-          row('Sổ 3 · Lãi cuối kỳ', byId('interest-three').textContent, 'strong');
-        }
-        if (!byId('book-four').hidden) {
-          row('Sổ 4 · Lãi cuối kỳ', byId('interest-four').textContent, 'strong');
-        }
+        row('Số ngày · lãi suất', `${byId('days').textContent} · 8,70%`);
+        section('CHI TIẾT TỪNG SỔ VÀ CÔNG THỨC');
+        currentCalculation.interests.forEach((interest, index) => {
+          const principal = index === 0 ? currentCalculation.amount : currentCalculation.interests[index - 1] + (index === 1 ? currentCalculation.extraAmount + currentCalculation.gift : 0);
+          row(`Sổ ${index + 1} · Vốn tính lãi`, money(principal));
+          row(`Công thức (${currentCalculation.days} ngày × 8,70% / 365)`, money(interest), 'strong');
+        });
         section('KẾT QUẢ CHÍNH');
-        row('Tổng lãi thực nhận', `${byId('total').textContent} đ`, 'strong');
-        row('Lãi suất thực nhận', byId('effective').textContent, 'strong');
-        row('Quà tặng dự kiến', byId('cash-gift').textContent, 'gift');
-        row('Tổng tiền lãi + quà', byId('with-gift').textContent, 'strong');
-          row('Lãi suất thực nhận + Quà quy đổi', byId('effective-with-gift').textContent, 'strong');
+        row('Tổng lãi ước tính', `${byId('total').textContent} đ`, 'strong');
+        row('Lãi suất quy đổi ước tính', byId('effective').textContent, 'strong');
+        row('Quà tặng ước tính', byId('cash-gift').textContent, 'gift');
+        row('Tổng lãi + quà ước tính', byId('with-gift').textContent, 'strong');
+        row('Lãi + quà quy đổi theo năm (ước tính)', byId('effective-with-gift').textContent, 'strong');
         ctx.fillStyle = '#5e7383';
         ctx.font = '400 17px Averta, Georgia, serif';
         y += 34;
-        ctx.fillText('Chỉ mở sổ tiếp theo khi tiền lãi sổ liền trước đạt từ 10.000.000 đồng; mỗi vòng được làm tròn đến đồng.', 62, y);
-        ctx.fillText('Quà tặng áp dụng từ 01/10/2026 đến hết 31/10/2026, có thể kết thúc sớm.', 62, y + 30);
-        ctx.fillText('Áp dụng cho tiền gửi tiết kiệm, tiền gửi có kỳ hạn tại quầy.', 62, y + 60);
+        ctx.fillText('Công thức mỗi sổ: vốn tính lãi × 8,70% × số ngày / 365; làm tròn đến đồng.', 62, y);
+        ctx.fillText('Vốn Sổ 2 = lãi Sổ 1 + số tiền chi thêm + thưởng; từ Sổ 3 dùng lãi sổ liền trước.', 62, y + 30);
+        ctx.fillText('Quà tặng áp dụng từ 01/10/2026 đến hết 31/10/2026, có thể kết thúc sớm.', 62, y + 60);
+        ctx.fillText('Kết quả tham khảo theo thông số nhập, không phải cam kết lãi suất hoặc xác nhận ưu đãi.', 62, y + 90);
         return canvas;
       }
       function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight, maxLines = 2, align = 'left') {
@@ -641,7 +699,7 @@
         ctx.fillStyle = '#f1d500';
         ctx.font = '700 italic 32px Lora, Georgia, serif';
         ctx.textAlign = 'right';
-        ctx.fillText('Thăng Long', 998, 100);
+        ctx.fillText('Chi nhánh Thăng Long', 998, 100);
         ctx.textAlign = 'left';
         ctx.fillStyle = '#fff';
         ctx.font = '700 35px Averta, Georgia, serif';
@@ -677,10 +735,10 @@
         }
         section('PHƯƠNG ÁN 1 · ĐÚNG KỲ HẠN KHÁCH CHỌN');
         row('Cách chia sổ', strategyPlanLabel(requestedPlan));
-        row('Tiền lãi', money(requestedPlan.interest), 'strong');
-        row('Quà tặng', money(requestedPlan.gift));
-        row('Tổng lãi + quà', money(requestedPlan.benefit), 'strong');
-        row('Lãi suất thực nhận + Quà quy đổi', strategyAnnualizedPercent(requestedPlan), 'strong');
+        row('Lãi ước tính', money(requestedPlan.interest), 'strong');
+        row('Quà ước tính', money(requestedPlan.gift));
+        row('Tổng lãi + quà ước tính', money(requestedPlan.benefit), 'strong');
+        row('Lãi + quà quy đổi theo năm', strategyAnnualizedPercent(requestedPlan), 'strong');
         row('Cuối kỳ', money(requestedPlan.amount + requestedPlan.benefit), 'strong');
         row('Ngày đáo hạn dự kiến', strategyMaturityLabel(requestedPlan));
         const splitDifference = requestedPlan.benefit - requestedSingle.benefit;
@@ -691,9 +749,9 @@
         } else {
           longerPlans.forEach(plan => {
             row(`${plan.parts[0].months} tháng${plan === bestLonger ? ' · nên cân nhắc' : ''}`, strategyPlanLabel(plan));
-            row('Lãi + quà', money(plan.benefit), 'strong');
-            row('Lãi suất thực nhận + Quà quy đổi', strategyAnnualizedPercent(plan), 'strong');
-            row('Cuối kỳ', money(plan.amount + plan.benefit));
+            row('Tổng lãi + quà ước tính', money(plan.benefit), 'strong');
+            row('Lãi + quà quy đổi theo năm', strategyAnnualizedPercent(plan), 'strong');
+            row('Tổng cuối kỳ ước tính', money(plan.amount + plan.benefit));
           });
           row('Kết luận', `Kỳ hạn dài hơn tốt nhất hiện tại là ${bestLonger.parts[0].months} tháng.`);
         }
@@ -739,7 +797,7 @@
           captureUrl = URL.createObjectURL(blob);
           captureBlob = blob;
           captureFile = typeof File === 'function' ? new File([blob], name, { type: 'image/png' }) : null;
-          captureSignature = `${parseAmount(amountInput.value)}|${termInput.value}|${formatDate(date)}`;
+          captureSignature = `${parseAmount(amountInput.value)}|${parseAmount(extraAmountInput.value)}|${termInput.value}|${formatDate(date)}`;
           byId('capture-preview').src = captureUrl;
           captureReady.hidden = false;
           shareButton.hidden = false;
@@ -773,6 +831,11 @@
       amountInput.addEventListener('input', () => {
         const digits = amountInput.value.replace(/\D/g, '').slice(0, 15);
         amountInput.value = digits ? number(Number(digits)) : '';
+        calculate();
+      });
+      extraAmountInput.addEventListener('input', () => {
+        const digits = extraAmountInput.value.replace(/\D/g, '').slice(0, 15);
+        extraAmountInput.value = digits ? number(Number(digits)) : '';
         calculate();
       });
       termInput.addEventListener('change', calculate);
